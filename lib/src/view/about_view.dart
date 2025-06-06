@@ -1,45 +1,55 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:utilizades/src/controlles/about_controller.dart';
 
-class HomeView extends StatelessWidget {
-  const HomeView({super.key});
+class AboutView extends StatelessWidget {
+  final AboutController controller = AboutController();
+
+  AboutView({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final abaout = controller.getAbout();
     return Padding(
       padding: EdgeInsets.all(24),
-      child: ListView(
-        children: [
-          Text(
-            "Aplicativo de estudos Flutter",
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            textAlign: TextAlign.center,
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            CircleAvatar(
+              backgroundImage: NetworkImage(abaout.photoUrl),
+              radius: 40,
             ),
-            SizedBox(height: 15,),
-            Text(
-             " Este é um aplicativo de estudos feito com Flutter. "
-            "Nosso objetivo é entender como funciona a construção de apps usando "
-            "o padrão MVC, rotas nomeadas, widgets personalizados, chamadas HTTP e muito mais.",
-            style: TextStyle(fontSize: 16),
-            textAlign: TextAlign.justify,
-            ),
-            SizedBox(height: 20,),
-            Text(
-              "O que é Flutter?",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: 15,),
-            Text(
-             "Flutter é um framework UI open-source criado pelo Google para a criação  de aplicações nativas para Android, iOS, Web e Desktop a partir de uma única base de código. Ele utiliza a linguagem Dart e permite desempenho nativo com renderização própria.",
-            style: TextStyle(fontSize: 16),
-            textAlign: TextAlign.justify,
+            const SizedBox(height: 15,),
+            Column(
+              children: abaout.abboutMe.map(
+                (part) => Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 6),
+                  child: Text(
+                    part,
+                    style: TextStyle(fontSize: 18),
+                    textAlign: TextAlign.justify,
+                    ),
+                )
+                ).toList()
             ),
             SizedBox(height: 20,),
-            Text(
-              "Vamos continuar aprendendo tudo sobre Flutter?",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-        ],
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: abaout.socialLinks.map((link){
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  child: Column(
+                    children: [
+                      IconButton(onPressed:(){}, icon: FaIcon(link.icon, color: link.color),),
+                        Text(link.name, style: TextStyle(fontSize: 12, color: link.color),)
+                    ],
+                  ),
+                  );
+                }).toList(),
+              
+            )
+          ],
+        ),
       ),
     );
   }

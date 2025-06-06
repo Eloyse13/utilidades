@@ -14,7 +14,13 @@ class AboutModel {
 class socialLinks{
   final String name;
   final IconData icon;
+  final Color color;
   final String url;
 
-  socialLinks({required this.name, required this.icon, required this.url});
+  socialLinks({
+    required this.name,
+    required this.icon,
+    required this.color,
+    required this.url,
+  });
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:utilizades/src/models/menu_model.dart';
 import 'package:utilizades/src/view/about_view.dart';
+import 'package:utilizades/src/view/converter_view.dart';
 import 'package:utilizades/src/view/home_view.dart';
 
 final List<MenuModel> appMenuItems = [
@@ -10,9 +11,16 @@ final List<MenuModel> appMenuItems = [
     route: "/home",
     page: const HomeView()
     ),
-    MenuModel(title: "Sobre mim", 
+    MenuModel(
+    title: "Sobre mim", 
     icon: Icons.person_sharp, 
     route: "/about", 
     page: AboutView()
+    ),
+  MenuModel(
+    title: "Conversor de medidas", 
+    icon: Icons.design_services, 
+    route: "/convertermedidas", 
+    page: ConverterView()
     ),
 ];
