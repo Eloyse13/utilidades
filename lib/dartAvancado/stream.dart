@@ -21,23 +21,51 @@ Stream<int> contarTempo() async*{
   }
 }
 
-//exemplo 2 - simulaçaõ de chat
+//exemplo 2 - simulação de chat
 Stream<String> mensagemChat() async*{
-  yield 'oi';
+  yield "tenho fofocaaaa";
   await Future.delayed(Duration(seconds: 1));
-  yield "si e vc?";
+  yield "CONTAAAAAA";
   await Future.delayed(Duration(seconds: 1));
-  yield " que bom!";
+  yield "só pra pra falar pessoalmente";
   await Future.delayed(Duration(seconds: 1));
-  yield "tchau.";
+  yield "PERAI QUE JÁ TO LIGANDO O CARROO";
+  await Future.delayed(Duration(seconds: 1));
+  yield "vou fazer uma pipoquinha pra nois kkkkkkkk";
+
+}
+
+/* void main(List<String> args) {
+  /* contarTempo().listen(
+    (event) => print("mensagem: $event"),
+    onDone: () => print("stream finalizada")
+  ); */
+
+ /*  mensagemChat().listen(
+    (mensagem) => print(mensagem),
+    onDone: () => print("fim do chat")
+  ); */
+} */
+
+//exemplos com controle de erro try cath
+Stream<int> contarTempo() async*{
+  try{
+    for (int i = 0; i < 10; i++) {
+      await Future.delayed(Duration(seconds: 1));
+      if (i == 3) {
+        throw Exception("erro ao contar número: $i");
+      }
+      yield i;
+    }
+  }catch(e){
+    print("Erro no contador de tempo $e");
+  }
 }
 
 void main(List<String> args) {
-  /* contarTempo().listen(
-(event) => print("contagem: $event"),
-onDone: () => print("strem finalizada"),
-  ); */
+  contarTempo().listen(
+    (event) => print("Número: $event"),
+    onError: (erro) => print(erro),
+    onDone: () => print("finalizado")
+  );
 }
-
-/* mensagemChat Listenable (
-)
