@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:utilizades/services/auth_service.dart';
 import 'package:utilizades/src/app/app_menu.dart';
+import 'package:utilizades/src/view/login_view.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({super.key});
@@ -29,6 +31,19 @@ class CustomDrawer extends StatelessWidget {
               Navigator.pushReplacementNamed(context, item.route);
               },
             )
+          ),
+          const Divider(),
+          ListTile(
+            leading: const Icon(Icons.logout),
+            title:  Text("Sair"),
+            onTap: (){
+              AuthService.logout();
+              Navigator.pushAndRemoveUntil(
+                context, 
+                MaterialPageRoute(builder: (_) => const LoginView()),
+                (route) => false
+              );
+            },
           )
         ],
       ),

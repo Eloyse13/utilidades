@@ -4,10 +4,10 @@ import 'package:utilizades/dartAvancado/isolate/product_parse.dart';
 import 'package:utilizades/src/app/app_widget.dart';
 
 void main() {
- // runApp(AppWidget());
+  runApp(AppWidget());
  //runApp(MaterialApp(home: Login(),));
 
- runApp(MaterialApp(home: ProductParse(),));
+ 
 }
 
 
