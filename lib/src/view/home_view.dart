@@ -1,11 +1,24 @@
 import 'package:flutter/material.dart';
 
-class HomeView extends StatelessWidget {
+class HomeView extends StatefulWidget {
   const HomeView({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return  Padding(
+  State<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
+  @override
+  State<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
+  
+}
+
+  
+  @override
+  Future<Widget> build(BuildContext context) async => Padding(
       padding: EdgeInsets.all(24),
       child: ListView(
         children: [
@@ -39,5 +52,4 @@ class HomeView extends StatelessWidget {
         ],
       ),
     );
-  }
 }

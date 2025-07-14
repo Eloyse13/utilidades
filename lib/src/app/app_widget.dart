@@ -10,7 +10,7 @@ class AppWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "utilidades",
-      initialRoute:  AuthService.isLoggedIn ? "/home" : "/login",
+      initialRoute: "/login",
       routes: {
         "/login": (context) => LoginView(),
         ...gerrateRoutes()

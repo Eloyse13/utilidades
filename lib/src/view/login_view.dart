@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:utilizades/services/auth_service.dart';
 import 'package:utilizades/src/controlles/login_controller.dart';
+import 'package:utilizades/src/models/user_model.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -14,8 +15,9 @@ class _LoginViewState extends State<LoginView> {
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
   String _massage = '';
+  bool _isLoading = false;
 
-  void _hadileLogin() async{
+ /*  void _hadileLogin() async{
     final sucess = await _controller.login(
       _usernameController.text,
       _passwordController.text
@@ -29,7 +31,36 @@ class _LoginViewState extends State<LoginView> {
         _massage = "Usuário ou senha incorretos";
       });
     }
-  }
+  } */
+ void -handlelogin() async{
+  setState(() {
+    _isLoding = true;
+  });
+
+  final user = UserModel(
+    username: _usernameController.text.trim(),
+   password: _passwordController.text.trim()
+   );
+
+   final success = await _controller.login(user);
+
+   setState((){
+    _isLoding = false;
+   });
+
+   if(success){
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text("Login efetuando com sucesso"))
+    );
+
+    Navigator.pushReplacementNamed(context, '/home');
+   }else{
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text("Dados de login incorretos"))
+    );
+   }
+
+ }
 
   @override
   Widget build(BuildContext context) {
@@ -54,24 +85,16 @@ class _LoginViewState extends State<LoginView> {
               ),
             ),
             SizedBox(height: 10,),
-            TextField(
-              controller: _passwordController,
-              decoration: InputDecoration(
-                labelText: "Senha",
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(18)
-                )
-              ),
-              obscureText: true,
-            ),
-            SizedBox(height: 10),
+            _isLoading ?
+            const CircularProgressIndicator() :
+              
             ElevatedButton(
-              onPressed: _hadileLogin, 
+              onPressed: _hadleLogin, 
               child: Text("entrar"),
              ),
              SizedBox(height: 10,),
              ElevatedButton(
-              onPressed: _hadileLogin, 
+              onPressed: _hadleLogin, 
               child: Text("entrar")
               ),
               SizedBox(height: 10,),
