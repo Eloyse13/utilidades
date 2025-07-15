@@ -3,7 +3,7 @@ class ApiService{
    * USAR API LOCAL
    * http://10.0.2.2:3000
    */
-  final _baseUr1 ="https://api-ecomerce-ug1v.onrender.com";
+  final _baseUr1 =" http://10.0.2.2:3000";
 
   Future<String?> login(Map<String, dynamic> data) async{
     final ur1 = Uri.parse('$_baseUr1/login');

@@ -3,6 +3,7 @@ import 'package:utilizades/src/models/menu_model.dart';
 import 'package:utilizades/src/view/about_view.dart';
 import 'package:utilizades/src/view/converter_view.dart';
 import 'package:utilizades/src/view/home_view.dart';
+import 'package:utilizades/src/view/product_list_page.dart';
 
 final List<MenuModel> appMenuItems = [
   MenuModel(
@@ -22,5 +23,11 @@ final List<MenuModel> appMenuItems = [
     icon: Icons.design_services, 
     route: "/convertermedidas", 
     page: ConverterView()
+    ),
+    MenuModel(
+    title: "Produtos", 
+    icon: Icons.production_quantity_limits, 
+    route: "/produtos", 
+    page: ProductListPage()
     ),
 ];
