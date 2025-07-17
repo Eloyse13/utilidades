@@ -12,6 +12,7 @@ class ProductListPage extends StatefulWidget {
 class _ProductListPageState extends State<ProductListPage> {
   final _controller = ProductController();
   late Future<List<ProductModel>> _produtos;
+  final currencyFormat = NumberFormat.simpleCurrency(locale: 'pt_BR');
 
   @override
   void initState() {
@@ -31,7 +32,34 @@ class _ProductListPageState extends State<ProductListPage> {
       context: context,
       builder:(_) = ProductForm(produto: produto, controller: _controller)
        );
+
+       if(resultado == true){
+        _loadaProdutos();
+       }
      }
+      void _excluirProduto(int id) async{
+    final confirm = await showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text("confirme a exclusão"),
+        content: const Text("Tem certeza que deseja excluir?"),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context, false),
+            child: Text("Cancelar"),
+          ),
+          TextButton(
+            onPressed: () => Navigator.pop(context, true),
+            child: Text("Confirmar"),
+          )
+        ],
+      )
+    );
+    if(confirm == true){
+      await _controller.deletarProduto(id);
+      _loadProdutos();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +83,7 @@ class _ProductListPageState extends State<ProductListPage> {
             return ListTile(
               title: Text(p.nome),
               subtitle: Text(
-                "Preço: ${p.preco}/nDescrição: ${p.descricao}"
+                "Preço: ${currencyFormat.format(p.preco)}/nDescrição: ${p.descricao}"
               ),
               isThreeLine: true,
               trailing: Row(

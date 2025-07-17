@@ -14,6 +14,7 @@ class ProductFrom extends StatefulWidget {
 
 class _ProductFormState  extends State<ProductForm> {
   final _formKey = GlobalKey<FormState>();
+  final _controller =ProductController();
   final _nomeContoller = TextEditingController();
   final _precoController = TextEditingController();
   final _descricaoController = TextEditingController();
@@ -38,7 +39,7 @@ class _ProductFormState  extends State<ProductForm> {
       );
 
       if(widget.produto == null){
-        await wiget.controller.criarProduto(produto);
+        await widget.controller.criarProduto(produto);
       }else{
         await widget.controller.atualizarProduto(produto);
       }
@@ -46,6 +47,26 @@ class _ProductFormState  extends State<ProductForm> {
       if(context.mounted){
         Navigator.pop(context, true);
       }
+     }
+
+     void _excluirProduto(int id) async{
+      final confirm = await showDialog<bool>(
+        context: context,
+         builder: (context) => AlertDialog(
+          title:  const Text("Deseja excluir este item?"),
+          content: const Text("Tem certeza que  deseja excluir?"),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context, true),
+              child: Text("Cancelar"),
+              ),
+              TextButton(
+                onPressed: () => Navigator.pop
+                 child: child
+                )
+          ],
+         )
+         );
      }
       
 
@@ -77,6 +98,14 @@ class _ProductFormState  extends State<ProductForm> {
         TextField(
           controller: _precoController,
           keyboardType: TexInputType.numder,
+          inputFormatters: [
+            CurrencyInputFormatter(
+              leadingSymbol: "R/$",
+              userSymbolPadding: true,
+              thousandSeparator: ThousandSeparator.Period,
+              mantissaLength: 2,
+            )
+          ],
           decoration: context InputDecoration(labelText: "Preço do produto"),
           validator: (v) => v!.isEmpty ? "Informe o preço do produto" : null,
         ),

@@ -30,4 +30,10 @@ final List<MenuModel> appMenuItems = [
     route: "/produtos", 
     page: ProductListPage()
     ),
+    MenuModel(
+      titule: "Pessoas (sqlite)",
+       icon: Icons.people, 
+       route: "/pessoas",
+        page: PersonView(),
+        ),
 ];
