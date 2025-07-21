@@ -13,12 +13,13 @@ class BaseLayout extends StatefulWidget {
 }
 
 class _BaseLayoutState extends State<BaseLayout> {
-  @override
+  /* @override
   void initState() {
     AuthService().checklogin(context);
     super.initState();
 
-  }
+  } */
+ 
   @override
   Widget build(BuildContext context) {
     return Scaffold(

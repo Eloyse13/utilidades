@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:utilizades/src/models/menu_model.dart';
 import 'package:utilizades/src/view/about_view.dart';
+import 'package:utilizades/src/view/bloc_example_view.dart';
 import 'package:utilizades/src/view/converter_view.dart';
 import 'package:utilizades/src/view/home_view.dart';
 import 'package:utilizades/src/view/product_list_page.dart';
@@ -36,4 +37,16 @@ final List<MenuModel> appMenuItems = [
        route: "/pessoas",
         page: PersonView(),
         ),
-];
+        MenuModel(
+          title: "login river",
+          icon: Icons.settings,
+          route: "/loginriver",
+          page:ProviderScope(child: RiverpodExample()),
+          ),
+          MenuModel(
+          title: "Bloc",
+          icon: Icons.settings_backup_restore,
+          route: "/bloc",
+          page:BlocExampleView(),
+          ),
+        ];
